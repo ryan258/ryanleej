@@ -1,0 +1,631 @@
+---
+layout: page
+title: Code Tools
+meta: Tools for Coding
+tags: Code, Tools
+---
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2>{{page.title}}</h2>
+		</div>
+		<div class="col-md-6">
+			<h3>SQL</h3>
+			<ul>
+				<li><a href="http://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins" target="_blank">SQL Joins Visualized</li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div class="col-md-6">
+			<h3>Joins</h3>
+			<ul>
+				<li><a href="http://stackoverflow.com/questions/38549/difference-between-inner-and-outer-joins" target="_blank">Inner v. Outer JOINs</a></li>
+				<li><a href="" target="_blank"></a></li>
+				<li><a href="" target="_blank"></a></li>
+				<li><a href="" target="_blank"></a></li>
+				<li><a href="" target="_blank"></a></li>
+				<li><a href="" target="_blank"></a></li>
+				<li><a href="" target="_blank"></a></li>
+			</ul>
+		</div>
+		<div class="col-md-6">
+			<h3>Filler</h3>
+			<ul>
+				<li><a href="http://bullshitipsum.com/" target="_blank">Bullshit Ipsum</a></li>
+				<li><a href="https://placehold.it/" target="_blank">placehold.it</a></li>
+				<li><a href="" target="_blank"></a></li>
+				<li><a href="" target="_blank"></a></li>
+				<li><a href="" target="_blank"></a></li>
+				<li><a href="" target="_blank"></a></li>
+			</ul>
+		</div>
+		<div class="col-md-6">
+			<h3>Front End Frameworks</h3>
+			<ul>
+				<li><a href="" target="_blank"></a></li>
+				<li><a href="" target="_blank"></a></li>
+				<li><a href="" target="_blank"></a></li>
+				<li><a href="" target="_blank"></a></li>
+				<li><a href="" target="_blank"></a></li>
+				<li><a href="" target="_blank"></a></li>
+			</ul>
+		</div>
+		<div class="col-md-12">
+		<h1>SQL Notes</h1>
+		<h2>Getting Data out of the Tables</h2>
+			<p>SQL is a programming language that allows you to interact with the database</p>
+			Life cycle - 
+			 - code is written and goes to the database
+			 - where it's executed
+			 - and the server sends out what the code wanted
+			 so it goes request (from browser) SQL Code is sent to the Database
+			 results are returned and sent back to the db
+
+			 requesting data
+
+		 <h3>SELECT statement</h3>
+			 // needed to get movie information
+
+			 SELECT ------------ (column to be searched)
+			 FROM ___________; (table data is in) // also every statement must end with a semi-colon (;)
+
+  		exp. SELECT title FROM movies; // we select all titles in the movie table
+
+		 	by selecting a single column, the result will contain only this column's data from all rows
+
+		  exp. SELECT id, title, genre, duration FROM movies; // return 4 columns of data from movies
+
+		 	exp. SELECT * FROM movies; // select all columns from movies
+
+		<h3>WHERE clause</h3>
+		 	// can be used to filter out data and match the request
+
+		 	SELECT _________
+		 	FROM ________
+		 	WHERE __________; //  the match case for the WHERE clause
+
+		 	exp. SELECT title FROM movies WHERE id=2;
+
+		 	you can also use a string for the WHERE clause
+		 	exp. SELECT * FROM movies = 'The Kid';
+
+		 		single quotes mean exact match
+
+		<h3>ORDER BY clause</h3>
+			// can be used to sort data in a specific way
+
+			Recipe:
+			SELECT ______
+			FROM ______
+			ORDER BY _______; // the column to be ordered, sorts data by columns based on how it is to be viewed
+
+			exp. SELECT title FROM movies ORDER BY duration; // default sort is lowest to highest to go the om descending order
+
+			  SELECT titles
+			  FROM movies
+			  ORDER BY duration DESC; // DESC - this will set them from highest to lowest
+
+		<h4>WHERE - you can use comparison operators</h4>
+			// let's use an operator to find movies over 100+
+
+			Recipe:
+			SELECT _________
+			FROM __________
+			WHERE _______ > ________; // it basically works like id = 2
+
+			SELECT * FROM movies WHERE duration > 100; // select all movies over 100 minutes
+
+			Other operators
+				- <. >=, <=
+
+			Not Equal Operator (<>)
+			// the anything but this operator
+
+
+			SELECT *
+			FROM movies
+			WHERE genre <> 'Horror';
+
+
+		<h4>Dealing with Multiple Conditions</h4>
+
+		<h5>The AND Operator</h5>
+
+			Recipe:
+			SELECT ___________
+			FROM __________
+			WHERE __________
+			AND ___________; // adds more criteria to the clause
+
+			exp: SELECT title FROM movies WHERE id = 1 AND genre = 'Comedy';
+
+		<h5>The OR Operator</h5>
+
+			SELECT ________
+			FROM _________
+			WHERE ________  // to look for matching criteria
+			OR _________;   // in the query
+
+			exp.  SELECT title FROM movies WHERE id = 1 OR genre = 'Comedy';
+
+	<h2>Adding Data to Tables</h2>
+
+		<h3>INSERT Statement</h3>
+		// To add a new record to a row
+
+		Recipe:
+		INSERT INTO __________ (________)  // table the data is in (column(s) we want to add to)
+		VALUES (________); // the actual values to add separated by commas
+
+		!order of INSERT INTO must be the same as VALUES
+
+		let's add a new movie
+
+		exp. INSERT INTO movies (id, title, genre, duration) VALUES (5, 'The Circus', 'Comedy', 71);
+
+		// if you're adding something to all the columns you can exclude calling all the columns
+		$C - INSERT INTO movies VALUES (5, 'The Circus', 'Comedy', 71); 
+
+		but if you only have a few
+
+		INSERT INTO moviews (title, duration)
+		VALUES ('The Fly', 80); 
+
+		// note: the ID can take care of itself, it's a primary key - unique and distinct and it'll never be empty
+		this is auto-incrementing
+
+		Q: What happens to the empty cells in that row?
+		A: They get a NULL value to represent missing data, which is a placeholder for unkown data
+
+	<h2>Changing Current Data</h2>
+		// wanting to change some data in the database
+
+		<h3>UPDATE statement</h3>
+
+		Recipe:
+		UPDATE __________       // enter the table name you want to update
+		SET_________ = _________   // select column name = value you're changing the column to
+		(WHERE clause);  // the where clause is optional here, but it pinpoints where the change 
+		                    will take place, or it'll update all rows
+
+		<h3>Updating Multiple Columns in a Row</h3>
+		// just add a comma between each column name
+
+		exp. UPDATE movies SET genre = 'Comedy', duration = 70 WHERE id = 5;
+		// this updates 2 cells on that 1 row
+
+		<h3>Making changes to multiple rows</h3>
+		// Adding an OR to the WHERE clause
+
+		exp.
+		UPDATE movies
+		SET genre = 'Romance'
+		WHERE id = 	id = 3 OR id = 5;
+
+	<h2>Removing Data</h2>
+		// removing data from the table
+
+		<h3>The DELETE Statement</h3>
+		// removes rows from the table based on which conditions are specified by the WHERE clause
+
+		Recipe:
+		DELETE FROM ________ // table name we wish to remove data from 
+		(WHERE clause); // where this will take place
+
+		exp. DELETE FROM movies WHERE id =5; // delete the row with an id = 5
+
+		<h4>Deleting all data from a table</h4>
+
+		DELETE FROM ____; // enter table name 
+
+		!once the data is deleted it's nearly impossible to get it back
+
+		<h4>Remove Multiple Rows from a Table</h4>
+		// rock that WHERE statement!
+
+		exp. DELETE FROM movies WHERE duration < 100;
+
+	<h2>Databases and Tables</h2>
+		<h3>Creating and Removing Databases and Tables</h3>
+
+		Create a brand new database
+
+		Recipe:
+		CREATE DATABASE __________; // give it a name
+
+		exp. CREATE DATABASE Chaplin Theaters; // creates a new DB named Chaplin Theatres
+
+		So it's empty and it needs tables.
+
+
+				Remove Databases with DROP
+				// and their tables
+
+				Recipe:
+				DROP DATABASE ___________; // enter the unfortunate DB's name
+
+
+		Create a new table in a Database
+
+		Recipe:
+		CREATE TABLE _____________       // new table's name, normally a descriptive title of the contained data
+		(                                // surround the table structure with ()'s
+		  column_name1 datatype,
+		  column_name2 datatype,
+		  column_name3 datatype,
+		  ...
+		);
+
+		Planning How You Want Your Tables to Look
+		// Look at what the data you're going to work with is and build around those reqs
+		how many columns?
+		columns of what?
+		how to handle each column?
+
+		exp.
+
+		CREATE TABLE movies
+		(
+		id int,                   // we'll use thisfor the auto-increment because we'll make it a primary key
+		title varchar(50),        // holds 50 letters or numbers
+		genre varchar(15),
+		duration int
+		);
+
+		// run this statement and booya, new table!
+
+		So the table is empty and we need to add some things, how do we do that? INSERT statement
+
+				what if we set it up incorrectly and want to remove the table? // drop!
+
+				Recipe:
+				DROP TABLE __________; // add name of table to remove
+
+	<h2>Manipulating Tables</h2>
+	<h3>Using SQL to change table structure</h3>
+		// How can we add, change, or drop a column in an existing table
+
+		ALTER TABLE command
+
+		Recipe:
+		ALTER TABLE __________             // add name of table we want to change
+		ADD COLUMN _________ ______;       // (1. Name of new column) (2. Data Type of the new column)
+
+		exp.
+
+		ALTER TABLE movies
+		ADD COLUMN rating int;
+
+		// new the new column is made but they're all empty! well, time for the UPDATE + WHERE 
+
+		exp.
+
+		UPDATE movies SET ratings = 8 WHERE title = 'Don Juan';
+		UPDATE movies SET ratings = 9 WHERE title = 'Peter Pan';
+		...and so forth
+
+		// so what if we don't need a column anymore?
+
+		Recipe:
+		ALTER TABLE _______     // enter table name
+		DROP COLUMN ________;   // enter column name
+
+		exp.
+
+		ALTER TABLE movies DROP COLUMN ratings; // no more ratings critics
+
+
+<h1>Sequel to SQL</h1>
+	<h2>Common Aggregation Functions</h2>
+
+
+	Q: How to find the total number of rows in a table?
+	A: Use the COUNT function!
+
+		SELECT count(*) FROM Movies; // this will give us the total number of rows in 1 row
+
+	!count(*) will count all the rows in a table regardless of NULL values
+
+	The 5 Aggregate Functions // the last 4 of these will only work with numbers
+
+		SELECT count(column_name)
+		FROM table_name;							// Returns the TOTAL NUMBER OF ROWS that match our search
+
+			SELECT sum(column_name)
+			FROM table_name;							// Returns the ADDED SUM OF VALUES for a group of rows
+
+			SELECT avg(column_name)
+			FROM table_name;							// Returns the CALCULATED AVERAGE VALUE for a group of rows
+
+			SELECT max(column_name)				
+			FROM table_name;							// Returns the LARGEST VALUE in a group of rows
+
+			SELECT min(column_name)				
+			FROM table_name;							// Returns the SMALLEST VALUE in a group of rows
+
+		We can chain these together in our select statement
+
+			exp.
+			SELECT max(tickets), min(tickets)
+			FROM Movies;
+
+	<h3>Aggregates with SQL Clauses</h3>
+		How can we run aggregates on groups?
+
+		SELECT sum(cost) FROM mMvies; // this would just make on big group, we want to split it up a bit
+
+		<h4>GROUP BY Clause</h4>
+
+		SELECT column_name, aggregate_function(column_name)
+		FROM table_name
+		GROUP BY column_name;
+
+		exp. 
+		SELECT genre, sum(cost)
+		FROM Movies
+		GROUP BY genre;
+
+		// Now what if we only want something with a certain amount of results to be summed up?
+
+		<h4>The HAVING Clause</h4>
+		// Follow it up with HAVING aggregation_function() > (an operator) [condition];
+
+		Recipe:
+		SELECT column_name, aggregate_function(column_name)
+		FROM table_name
+		WHERE column_name operator value                          //(optional)
+		GROUP BY column_name
+		HAVING aggregate_function(column_name) operator value;
+
+		exp.
+
+		SELECT genre, sum(cost)
+		FROM Movies
+		GROUP BY genre
+		HAVING COUNT(*) > 1; // this having count will apply to the genre declared in the SELECT statement
+
+		// now only genres with more the 1 result will be aggregated, if it doesn't it won't get listed in our result
+
+		// now what if we only wanted to list movies that cost over $1 million dollars
+
+		SELECT genre, sum(cost)
+		FROM Movies
+		WHERE cost >= 1000000
+		GROUP BY genre
+		HAVING COUNT(*) > 1;
+
+
+	<h2>Identifying Constraints</h2> 
+		// how you prevent bad data from ibeing inserted
+		
+		<h3>Default Behavior of a Table</h3>
+		// The default behavior of a table column is to allow the insertion of NULL values
+
+		Q: So how can we make sure that part of the data is required?
+		A: The NOT NULL Constraint!
+
+		Exp.
+
+		CREATE TABLE Promotions
+		(
+			id int,
+			name varchar(50) NOT NULL, // so when we go to insert without the name it will throw an error
+			category varchar(15)
+		);
+
+		Q: Why Use Constraints?
+		A: Out of the box MySQL is very permissive so we need contraints.
+				- They can prevent NULL values
+				- Ensure column values are unique
+				- Provide additional validations
+
+			We can also prevent Unwanted Duplicates
+
+		<h3>The UNIQUE Column Restraint</h3> 
+		// We can use multiple contraints on a single column.
+
+
+		exp.
+
+		CREATE TABLE Promotions
+		(
+			id int,
+			name varchar(15) NOT NULL UNIQUE, // UNIQUE added here to prevent duplicate values.
+			category varchar(15)
+		);
+
+		// But sometimes we want to alter the name of our constraint, it'll make it easier to find later
+
+		CREATE TABLE Promotions
+		(
+			id int,
+			name varchar(50) NOT NULL,
+			category varchar(15),
+			CONSTRAINT unique_name UNIQUE (name)  // unique_name is what we assigned for our custom constraint name
+		);																			// (name) = target column
+																						// this will pass better info through the error message
+
+		<h4>Column vs Table</h4>
+
+		Aside from NOT NULL, every column constraint can also be written as a table constraint
+
+		exp. Column Constraint
+
+		CREATE TABLE Promotions
+		(
+			id int,
+			name varchar(50) NOT NULL UNIQUE,
+			category varchar(15)
+		);
+
+		exp. Table Constraint
+
+		CREATE TABLE Promotions (
+			id int,
+			name varchar(50) NOT NULL,
+			category varchar(15),
+			CONSTRAINT unique_name UNIQUE (name)         // in a table you just can't have NOT NULL before a UNIQUE
+		);
+
+		<h5>Ensuring 2 Columns are Unique</h5>
+		// What if we don't want to allow an insert that has the same name and category?
+
+		- You can specify any # of columns inside your unique constraint
+
+		exp.
+		CREATE TABLE Promotions
+		(
+			id int,
+			name varchar(50) NOT NULL,
+			category varchar(15),
+			CONSTRAINT unique_name UNIQUE (name, category)
+		);
+
+		So if you run
+		note: we already hove this combination
+
+		INSERT INTO Promotions (id, name, category)
+		VALUES (4, 'Half Off', 'Discount');
+
+		<h3>Primary Key</h3>
+		// Most tables should have one
+		// As the primary key, the id column needs to uniquely identify every row in the table.
+		// They MUST be:
+					- Unique
+					- NOT NULL
+
+		exp.
+		CREATE TABLE PRomotions
+		(
+			id int PRIMARY KEY, // Adding this constraint makes it the primary key so can't be NULL must be UNIQUE
+			name varchar(50),
+			category varchar(15)
+		);
+
+		If there's duplicate of the primary key the error will tell you the key already exists.
+
+		<h4>A Primary Key Prevents NULL Values</h4>
+
+		Q: What's the difference between a Primary Key and NOT NULL + UNIQUE?
+		A: A Primary Key can only be used once per table. While NOT NULL + UNIQUE can be used multiple time per table.
+
+	<h2>Value Constraints</h2>
+
+		Referencing the primary key of another table allows you to forego duplicating the content.
+
+		i.e. The movie_id column would reference the id column in the Movies table.
+
+			!There's a common naming convention
+			We singularize the Movies (name of the table) what we're referencing
+				// Movies > id becomes movie_id (id being the column name)
+
+				This is called a foreign key
+				def. a column in 1 table that references the primary key column of another table.
+
+				Querying for Relationship Data (we have to do 2 queries)
+
+				exp. // find the id for the movie
+
+				SELECT id
+				FROM Movies
+				WHERE title = 'Gone With the Wind'; // this will return the value of 2
+
+				then // use that value to get the name and category and specify the movie id
+
+				SELECT name, category
+				FROM Promotions
+				WHERE movie_id = 2;
+
+			What happens if you insert invalid data for movie_id? // nothing to ref in other table
+
+			INSERT INTO Promotions (id, movie_id, name, category)
+			VALUES (4, 999, 'Fake Promotion', 'Hoax');
+
+				/The references keyword can be used to make a FOREIGN KEY constraint
+
+				CREATE TABLE Movies
+				(
+					id in PRIMARY KEY,
+					title varchar(20) NOT NULL UNIQUE
+				);
+
+				Adding a Constraint
+
+				before
+
+					CREATE TABLE Promotions
+					(
+						id int PRIMARY KEY,
+						movie_id int,
+						name varchar(50),
+						category varchar(15)
+					);
+
+				after adding constraint
+
+					CREATE TABLE Promotions
+					(
+						id int PRIMARY KEY,
+						movie_id int REFERENCES movies(id), // REFERENCES creates our foreign key restraint
+						name varchar(50),										// must be referencing a table that has already been created
+						category varchar(15)
+					);
+
+					// and now it'll throw an error about the foreign key restraint
+
+				the shorter way of doing this is that we don't have to specify the column
+
+					instead of movies(id) it can just be movies
+
+					CREATE TABLE Promotions
+					(
+						id int PRIMARY KEY,
+						movie_id int REFERENCES movies, // the id column is the default
+						name varchar(50),
+						category varchar(15)
+					);
+
+				different syntax! == same result
+
+					CREATE TABLE Promotions
+					(
+						id int PRIMARY KEY,
+						movie_id int,
+						name varchar(50),
+						category varchar(15);
+						FOREIGN KEY (movie_id) REFERENCES movies
+					);
+
+			What to do with Orphan records?
+			// what happens when what you're referencing gets deleted?
+				broken association = orphan record (bad data)
+
+				this is handled by the REFERENCE restraint
+				so we have to first delete what's referencing it before we can delete it
+
+				DROP - tables must be dropped in a certain order as well
+
+		Validating Data Insertion
+// making sure no film has a duration of less than 0
+
+			Adding CHECK Constraint // used to validate the value that can be placed in a column
+
+			exp.
+
+			CREATE TABLE Movies
+			(
+				id int PRIMARY KEY,
+				title varchar(20) NOT NULL UNIQUE,
+				genre varchar(100),
+				duration int CHECK (duration > 0)
+			);
+
+
+			</p>
+			</ul>
+		</div>
+	</div>
+</div>
