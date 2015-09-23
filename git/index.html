@@ -29,6 +29,19 @@ tags: Git, GitHub, Notes
 				<li><a href="" target="_blank"></a></li>
 			</ul>
 		</div>
+		<div class="col-md-12">
+			<h3>Handy Codes</h3>
+			<h4>Getting a fresh local repo when it's compromised</h4>
+			<ol>
+				<li>Backup local master - <code>git checkout -b master-BACKUP</code></li>
+				<li>Delete local master - <code>git branch -D master</code></li>
+				<li>Checkout remote master - <code>git checkout --track origin/master</code></li>
+			</ol>
+			<h4>You forgot to set an upstream on remote for your branch.</h4>
+			<ol>
+				<li>Set upstream for your branch on remote - <code>git push --set-upstream origin [branch name]</code></li>
+			</ol>
+		</div>
 		<div class="col-md-6">
 			<h3>Managing Repositories</h3>
 			<ul>
@@ -36,7 +49,7 @@ tags: Git, GitHub, Notes
 				<li><a href="http://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository" target="_blank">Recording Changes to the Repository</a></li>
 				<li><a href="http://git-scm.com/docs/git-fetch" target="_blank">git fetch</a></li>
 				<li><a href="http://git-scm.com/docs/git-clean" target="_blank">git clean</a></li>
-				<li><a href="" target="_blank"></a></li>
+				<li><a href="http://git-scm.com/docs/git-revert" target="_blank">git revert</a></li>
 				<li><a href="" target="_blank"></a></li>
 			</ul>
 		</div>
