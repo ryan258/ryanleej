@@ -16,7 +16,11 @@ tags: Drupal, Notes
 				<li><a href="http://alistapart.com/article/get-started-with-git" target="_blank">Getting Started w/ Git </a></li>
 				<li><a href="http://stackoverflow.com/questions/315911/git-for-beginners-the-definitive-practical-guide#" target="_blank">Git for Beginners - The Definitive Practical Guide</a></li>
 				<li><a href="http://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup" target="_blank">First Time Git Setup</a></li>
-				<li><a href="" target="_blank"></a></li>
+				<li><em>Dev Desktop installs everything as a multisite so to use drush from outsite a sites folder<br>
+					to take the single site approach and use drush from the root:</em><br>
+					sudo mv loc.drushsite.com/settings.php default/.<br>
+				  <em>Then remove the old site folder:</em><br>
+				  sudo rm -rf loc.drushsite.com/</li>
 				<li><a href="" target="_blank"></a></li>
 				<li><a href="" target="_blank"></a></li>
 			</ul>
@@ -24,12 +28,23 @@ tags: Drupal, Notes
 		<div class="col-md-6">
 			<h3>Drush Commands</h3>
 			<ul>
-				<li><a href="" target="_blank">drush pm-update</a></li>
-				<li><a href="" target="_blank">drush dl</a></li>
-				<li><a href="" target="_blank"></a></li>
-				<li><a href="" target="_blank"></a></li>
-				<li><a href="" target="_blank"></a></li>
-				<li><a href="" target="_blank"></a></li>
+				<li>drush pm-update</li>
+				<li>drush dl</li>
+				<li>drush en -y // will also dl/en dependencies, -y is auto yes to prompts</li>
+				<li>drush dis [project name] // disable modules</li>
+				<li>drush pm-uninstall [project name // does the same as the uninstall tab on the modules page, removes data from db]</li>
+				<li>drush pm -releasenotes // read release notes, especially before updating or<br>
+				  drush rln [project name]</li>
+				<li>drush up -n | grep available // see what updates are available</li>
+				<li>drush pm-updatecode [project name] // update a project w/ details<br>
+				  or drush upc [project name]</li>
+				<li>drush updatedb or: // update database<br>
+					drush updb</li>
+				<li>drush dl [full version ie module_filter-7.x-2.-dev] -y // Upgrade, downgrade to specific versions, then update db</li>
+				<li>drush cc all // clear cache</li>
+				<li>drush pm-update<br>
+					or drush up</li>
+				<li>drush cron // by default drupal runs drush every 3 hours</li>
 			</ul>
 		</div>
 		<div class="col-md-6">
@@ -80,7 +95,7 @@ tags: Drupal, Notes
 				<li><a href="https://www.ostraining.com" target="_blank">OS Training</li>
 				<li><a href="https://www.drupalize.me">Drupalize.me</li>
 				<li><a href="https://www.buildamodule.com">Build a Module</a></li>
-				<li></li>
+				<li>Drupalshowcase.com</li>largescaledrupal.com
 			</ul>
 		</div>
 	</div>
